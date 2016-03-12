@@ -1,0 +1,41 @@
+-Input int
+li $v0,5
+	syscall
+	add $s0,$v0,$zero 
+-Output int
+li $v0,1
+add $a0,$t5,$zero
+syscall
+
+-Input String
+li $v0 , 8
+la $a0 , string 
+syscall
+
+-Output String 
+li $v0,4
+	la $a0,string 
+	syscall
+
+-loop for a string string: .space 256
+loop:
+	lb $t2,string($t0)
+  	beq $t2,$zero,Exit
+  	
+	     addi $t0 , $t0 , 1    
+		j loop
+-loop for array of Integers array: .word 0:100
+loop:
+	
+	beq $s0,$zero,Exit
+	
+	li $v0,5
+	syscall
+	add $s0,$v0,$zero 
+	sw $s0,array($t0)
+	addi $t0,$t0,4
+
+j loop
+
+
+
